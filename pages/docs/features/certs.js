@@ -67,7 +67,7 @@ When automatic certificate renewal fails, we will send you a notification email.
 
 ### Cloudflare
 
-A common reason why #4 occurs is when your domain is behind Cloudflare, and you have the "Always use HTTPS" setting on. You can fix with:
+A common situation in which #4 occurs is when your domain is behind Cloudflare and you have the "Always use HTTPS" setting on. You can fix with:
 
 - Crypto tab: Turn off "Always use HTTPS"
 - Page rules tab:
