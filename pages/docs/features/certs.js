@@ -33,10 +33,6 @@ Lists all certificates owned and created by the user. All certificate entries ev
 
 Allows you to create a new certificate for any domain you have access to and have registered with now. There shouldn't be much real use for this command and it's mainly provided for symmetry, though you may want to use it for creating a certificate entry for a subdomain in advance, before creating an alias using the domain.
 
-### now certs renew zeit.rocks
-
-Can be used for renewing an existing certificate issued with now. This command can't used for renewing a custom certificate provided by the user.
-
 ### now certs replace
 
 The command can be used to upload a certificate issued by a 3rd party Certificate Authority. It requires you to already have an alias with an automatic certificate in place. You can use it like this:
@@ -53,9 +49,27 @@ ${
 
 ## The API Endpoint
 
-Finally, version **0.6.0** of [now-client](https://github.com/zeit/now-client) comes with API wrappers for managing the certificates bound to aliases using a custom domain.
+Version **0.6.0** of [now-client](https://github.com/zeit/now-client) comes with API wrappers for managing the certificates bound to aliases using a custom domain.
 
 Normally, when a user created an alias with ${<Now color="#000" />} command line utility, we automatically issued a certificate for it (like previously described in ${<InternalLink href="/blog/now-alias">this post</InternalLink>}). So technically, the API endpoint was already there. But until recently, it only supported issuing new certificates. By now, it also supports renewal, removal and replacement.
 
 The endpoint is called \`/now/certs\` and available in our ${<InternalLink href="/api#endpoints">REST API</InternalLink>}.
 `)
+
+## Renewal failure
+
+When automatic certificate renewal fails, we will send you a notification email. Here are some possible reasons:
+
+1. The domain is no longer used in Now
+2. A CAA record permitting issuing a certificate is missing or is invalid
+3. Other DNS records are missing or invalid
+4. HTTP requests are being redirected to HTTPS 
+
+### Cloudflare
+
+A common reason why #4 occurs is when your domain is behind Cloudflare, and you have the "Always use HTTPS" setting on. You can fix with:
+
+- Crypto tab: Turn off "Always use HTTPS"
+- Page rules tab:
+  - Create rule URL: `*mydomain.com/.well-known/acme-challenge*` with setting: "Always online": On
+  - Create rule URL: `http://*mydomain.com/*` with setting: "Always use HTTPS" and order "Last"
