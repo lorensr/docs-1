@@ -63,13 +63,4 @@ When automatic certificate renewal fails, we will send you a notification email.
 1. The domain is no longer used in Now
 2. A CAA record permitting issuing a certificate is missing or is invalid
 3. Other DNS records are missing or invalid
-4. HTTP requests are being redirected to HTTPS 
-
-### Cloudflare
-
-A common situation in which #4 occurs is when your domain is behind Cloudflare and you have the "Always use HTTPS" setting on. You can fix with:
-
-- Crypto tab: Turn off "Always use HTTPS"
-- Page rules tab:
-  - Create rule URL: `*mydomain.com/.well-known/acme-challenge*` with setting: "Always online": On
-  - Create rule URL: `http://*mydomain.com/*` with setting: "Always use HTTPS" and order "Last"
+4. HTTP requests are being redirected to HTTPS (for example ${<InternalLink href="/docs/guides/how-to-use-cloudflare#cloudflare-as-a-proxy-server">when using Cloudflare</InternalLink>})
