@@ -64,6 +64,10 @@ ${
   }
 }`}</Code>
 }
+   
+### Service worker
+   
+If you are using CRA's service worker, disabling HTTP caching on `service-worker.js` [is recommended](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#offline-first-considerations). `serve` [doesn't yet support](https://github.com/zeit/serve/issues/289) per-file caching, so you have to turn off caching for all files: `serve --single ./build --cache 0`
 
 ## Deploying the application
 Once we did that we can deploy our application with the following command:
