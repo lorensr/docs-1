@@ -4,7 +4,7 @@ import withDoc, { components } from '../../../lib/with-doc'
 import { sergio } from '../../../lib/data/team'
 import Now from '../../../components/now/now'
 import { InternalLink } from '../../../components/text/link'
-import { Code } from '../../../components/text/code'
+import { Code, InlineCode } from '../../../components/text/code'
 import { TerminalInput } from '../../../components/text/terminal'
 
 // prettier-ignore
@@ -67,7 +67,7 @@ ${
    
 ### Service worker
    
-If you are using CRA's service worker, disabling HTTP caching on `service-worker.js` [is recommended](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#offline-first-considerations). `serve` [doesn't yet support](https://github.com/zeit/serve/issues/289) per-file caching, so you have to turn off caching for all files: `serve --single ./build --cache 0`
+If you are using CRA's service worker, disabling HTTP caching on ${<InlineCode>service-worker.js</InlineCode>} [is recommended](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#offline-first-considerations). ${<InlineCode>serve</InlineCode>} [doesn't yet support](https://github.com/zeit/serve/issues/289) per-file caching, so you have to turn off caching for all files: ${<InlineCode>serve --single ./build --cache 0</InlineCode>}
 
 ## Deploying the application
 Once we did that we can deploy our application with the following command:
