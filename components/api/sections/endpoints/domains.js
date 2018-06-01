@@ -1,6 +1,6 @@
 import markdown from 'markdown-in-js'
 import Section, { components } from '../../section'
-import { Code } from '../../../text/code'
+import { Code, InlineCode } from '../../../text/code'
 import { InternalLink } from '../../../text/link'
 import Now from '../../../now/now'
 import {
@@ -68,7 +68,7 @@ ${<OutputTable>
   <Row>
     <BoldCell>isExternal</BoldCell>
     <TypeCell>Boolean</TypeCell>
-    <Cell>If is an <InternalLink href="/docs/features/dns#adding-a-domain-using-external-nameservers">externally handled domain</InternalLink></Cell>
+    <Cell>If it is an <InternalLink href="/docs/getting-started/assign-a-domain-name#4.-using-a-custom-domain-with-a-cname">externally handled domain</InternalLink></Cell>
   </Row>
   <Row>
     <BoldCell>verified</BoldCell>
@@ -131,10 +131,9 @@ ${<Code>{`{
 ${<Endpoint method="POST" url="/v2/domains" />}
 
 Register a new domain name with ${<Now color="#000" />} for the authenticating
-user. If the field \`isExternal\` is false a zeit.world DNS
-is configured for the domain; Otherwise an external nameserver is
-expected to point \`CNAME/ALIAS\` towards
-\`alias.zeit.co\`
+user. The field \`serviceType\` selects whether the domains is going to use
+zeit.world DNS or an external nameserver. In the latter case a \`CNAME/ALIAS\`
+record(s) are expected to point towards \`alias.zeit.co\`.
 
 If an external nameserver is used the user must verify the domain name
 by creating a TXT record for \`_now\` subdomain containing a
@@ -151,10 +150,10 @@ ${<InputTable>
     <Cell>The domain name you want to add.</Cell>
   </Row>
   <Row>
-    <BoldCell>isExternal</BoldCell>
-    <TypeCell>Boolean</TypeCell>
+    <BoldCell>serviceType</BoldCell>
+    <TypeCell>Enum</TypeCell>
     <BooleanCell status={false} />
-    <Cell>If is an <InternalLink href="/docs/features/dns#adding-a-domain-using-external-nameservers">externally handled domain</InternalLink></Cell>
+    <Cell><InlineCode>external</InlineCode> for <InternalLink href="/docs/features/dns#adding-a-domain-using-external-nameservers">externally handled domain</InternalLink>; <InlineCode>zeit.world</InlineCode> for managed.</Cell>
   </Row>
 </InputTable>}
 
@@ -195,7 +194,7 @@ ${<Request
   }}
   body={{
     "name": "zeit.rocks",
-    "isExternal": false
+    "serviceType": "zeit.world"
   }}
 />}
 
@@ -218,7 +217,7 @@ ${<Request
   }}
   body={{
     "name": "awesome-now.us",
-    "isExternal": false
+    "serviceType": "zeit.world"
   }}
 />}
 

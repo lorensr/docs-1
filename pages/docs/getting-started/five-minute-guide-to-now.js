@@ -42,7 +42,7 @@ that runs in your menu bar and comes with the following features:
 up to date automatically (the command line interface for interacting with Now).
 - Provides a realtime feed of the activity
 on your account and teams that you've joined.
-- Let's you deploy any kind of application or file by
+- Lets you deploy any kind of application or file by
 simply dragging and dropping it onto its menubar icon or selecting
 it using a file picker.
 
@@ -136,3 +136,4 @@ ${<HR />}
 
 These are just a few things you can do with ${<Now color="#000"/>}. To do more with ${<Now color="#000"/>}, follow the rest of the docs.
 `)
+
