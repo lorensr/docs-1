@@ -47,15 +47,6 @@ ${
 
 **Keep in mind**: \`--ca ca_chain.crt\` is optional but needed if your certificate provider is not considered as a root Certificate Authority by web browsers and operating systems (which is usually the case). This file is usually provided by the Certificate Authority you're using.
 
-## The API Endpoint
-
-Version **0.6.0** of [now-client](https://github.com/zeit/now-client) comes with API wrappers for managing the certificates bound to aliases using a custom domain.
-
-Normally, when a user created an alias with ${<Now color="#000" />} command line utility, we automatically issued a certificate for it (like previously described in ${<InternalLink href="/blog/now-alias">this post</InternalLink>}). So technically, the API endpoint was already there. But until recently, it only supported issuing new certificates. By now, it also supports renewal, removal and replacement.
-
-The endpoint is called \`/now/certs\` and available in our ${<InternalLink href="/api#endpoints">REST API</InternalLink>}.
-`)
-
 ## Renewal failure
 
 When automatic certificate renewal fails, we will send you a notification email. Here are some possible reasons:
@@ -64,3 +55,12 @@ When automatic certificate renewal fails, we will send you a notification email.
 2. A CAA record permitting issuing a certificate is missing or is invalid
 3. Other DNS records are missing or invalid
 4. HTTP requests are being redirected to HTTPS (for example ${<InternalLink href="/docs/guides/how-to-use-cloudflare#cloudflare-as-a-proxy-server">when using Cloudflare</InternalLink>})
+
+## The API Endpoint
+
+As of version **0.6.0**, [now-client](https://github.com/zeit/now-client) comes with API wrappers for managing the certificates bound to aliases using a custom domain.
+
+Normally, when a user created an alias with ${<Now color="#000" />} command line utility, we automatically issued a certificate for it (like previously described in ${<InternalLink href="/blog/now-alias">this post</InternalLink>}). So technically, the API endpoint was already there. But until recently, it only supported issuing new certificates. By now, it also supports renewal, removal and replacement.
+
+The endpoint is called \`/now/certs\` and available in our ${<InternalLink href="/api#endpoints">REST API</InternalLink>}.
+`)
