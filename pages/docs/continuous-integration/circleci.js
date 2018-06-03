@@ -15,7 +15,7 @@ Every time you push or merge to the master branch a new build and deployment is 
 
 ## Step 1: Create an account
 
-[CircleCI](https://circleci.com/)
+[CircleCI.com](https://circleci.com/)
 
 ## Step 2: Add the config file
 
