@@ -8,13 +8,18 @@ export default withDoc({
   description: 'Using Circle CI to automate your Now Node deployments',
   date: '26 May 2018',
   authors: [],
-  editUrl: 'pages/docs/examples/circleci.js',
+  editUrl: 'pages/docs/continuous-integration/circleci.js',
 })(markdown(components)`
 
 Every time you push or merge to the master branch a new build and deployment is initiated in Circle CI.
 
-1. Create an account at [Circle CI](https://circleci.com/).
-2. Create a ${<InlineCode>.circleci/config.yml</InlineCode>} file in your project with the following:
+## Step 1: Create an account
+
+[Circle CI](https://circleci.com/)
+
+## Step 2: Add the config file
+
+Create a ${<InlineCode>.circleci/config.yml</InlineCode>} file in your project with the following:
 
 ${
   <Code>{
@@ -82,8 +87,9 @@ workflows:
   `}
   </Code>}
 
+## Step 3: Add domain
 
-3. Open your ${<InlineCode>package.json</InlineCode>} file and add the following
+Open your ${<InlineCode>package.json</InlineCode>} file and add the following
 information, adapted for your own deployment. This is used to run the alias command and point your
 domain to the correct deployment (you could also put
 this in a [now.json](https://zeit.co/blog/now-json) file):
@@ -97,6 +103,8 @@ ${
         }
     ...
 }`}</Code>}
+
+## Step 4: Add scripts
 
 4. Also add the following 2 scripts to the ${<InlineCode>script</InlineCode>} property in your ${<InlineCode>package.json</InlineCode>} file. These are used by your Travis config. The first is to deploy and the second is used to alias your latest deploy:
 
@@ -113,13 +121,23 @@ ${
 </Code>
 }
 
-5. Make sure ${<InlineCode>now</InlineCode>} is a ${<InlineCode>devDependency</InlineCode>} with ${<InlineCode>npm install --save-dev now</InlineCode>}.
+## Step 5: Add devDependency
 
-6. In your CircleCI account, go to "Add projects", then find your repository and click "Set Up Project". Then push your changes to master. The build should start and fail.
+Make sure ${<InlineCode>now</InlineCode>} is a ${<InlineCode>devDependency</InlineCode>} with ${<InlineCode>npm install --save-dev now</InlineCode>}.
 
-7. You need to get a [token](https://zeit.co/account/tokens). Go to the tokens page of your dashboard, under Account Settings, Tokens. Enter the name of the Token (e.g. Circle CI) and hit enter. A new token will be created which you can copy to your clipboard by clicking Copy.
+## Step 6: Add project
 
-8. In your CircleCI account, under Settings -> Projects, find your repo and click the gear icon on the right. Then select Environment Variables and add one called ${<InlineCode>NOW_TOKEN</InlineCode>} and paste in the value from the last step.
+In your CircleCI account, go to "Add projects", then find your repository and click "Set Up Project". Then push your changes to master. The build should start and fail.
 
-9. Test it out by pushing a change to master and checking your CircleCI build feed.
+## Step 7: Get now token
+
+You need to get a [token](https://zeit.co/account/tokens). Go to the tokens page of your dashboard, under Account Settings, Tokens. Enter the name of the Token (e.g. Circle CI) and hit enter. A new token will be created which you can copy to your clipboard by clicking Copy.
+
+## Step 8: Add environment variables
+
+In your CircleCI account, under Settings -> Projects, find your repo and click the gear icon on the right. Then select Environment Variables and add one called ${<InlineCode>NOW_TOKEN</InlineCode>} and paste in the value from the last step.
+
+## Step 9: Test
+
+Test it out by pushing a change to master and checking your CircleCI build feed.
 `)
