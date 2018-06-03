@@ -1,4 +1,5 @@
 import Document_, { Head, Main, NextScript } from 'next/document'
+import { GA_ID } from '../lib/metrics'
 
 export default class Document extends Document_ {
   render() {
@@ -9,21 +10,19 @@ export default class Document extends Document_ {
           <Main />
           <NextScript />
           <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          />
+          <script
             dangerouslySetInnerHTML={{
               __html: `
-            var _paq = _paq || [];
-            _paq.push(['trackPageView']);
-            _paq.push(['enableLinkTracking']);
-            (function() {
-              var u="//zeit.co/api/_/";
-              _paq.push(['setTrackerUrl', u+'p']);
-              _paq.push(['setSiteId', '1']);
-              var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-              g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'p.js'; s.parentNode.insertBefore(g,s);
-            })();`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}');
+              `
             }}
           />
-
           <script
             dangerouslySetInnerHTML={{
               __html: `

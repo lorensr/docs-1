@@ -5,7 +5,7 @@ import NextHead from 'next/head'
 import NProgress from 'nprogress'
 import debounce from 'lodash.debounce'
 import RouterEvents from '../lib/router-events'
-import * as gs from '../lib/gs'
+import * as metrics from '../lib/metrics'
 
 let title
 
@@ -15,7 +15,7 @@ RouterEvents.on('routeChangeComplete', url => {
   start.cancel()
   NProgress.done()
 
-  gs.pageview(url, title)
+  metrics.pageview(url, title)
 })
 RouterEvents.on('routeChangeError', () => {
   start.cancel()

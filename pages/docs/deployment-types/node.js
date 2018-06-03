@@ -18,7 +18,7 @@ export default withDoc({
 
 If your project contains a \`package.json\` (and no \`Dockerfile\`) file, it will always be treated as a [Node.js](https://nodejs.org/en/) deployment.
 
-This means that, when you run \`now\`, your code will be launched into a 64-bit Node.js environment running on Alpine Linux (using [musl](https://www.musl-libc.org/) instead of [glibc](https://www.gnu.org/software/libc/) for the core libraries).
+This means that when you run \`now\`, your code will be launched into a 64-bit Node.js environment running on Alpine Linux (using [musl](https://www.musl-libc.org/) instead of [glibc](https://www.gnu.org/software/libc/) for the core libraries).
 
 In this document, you'll learn the exact specifications and behaviour of Node.js deployments running on now.
 
@@ -70,9 +70,9 @@ ${
 
 ## Port Selection
 
-${<Now color="#000" />} deployment instances always listen on port \`443\` (HTTPS) of their given url. Your server code can expose a HTTP service on **any port** of your choice (not multiple ones). ${<Now color="#000" />} will then route requests received on port \`443\` to your HTTP service port and its response will be returned by the deployment instance.
+${<Now color="#000" />} deployment instances always listen on port \`443\` (HTTPS) of their given url. Your server code can expose an HTTP service on **any port** of your choice (not multiple ones). ${<Now color="#000" />} will then route requests received on port \`443\` to your HTTP service port, and its response will be returned by the deployment instance.
 
-Aditionally visitors will be redirected from \`http\` to \`https\` automatically.
+Additionally, visitors will be redirected from \`http\` to \`https\` automatically.
 
 ## Custom Node.js Configuration
 
@@ -96,7 +96,7 @@ Old deployments always stay around forever if you don't remove them using \`now 
 
 However, if your deployment doesn't receive any HTTP(S) requests for a long time, it will most likely be added to the list of deployments that will fall into a light sleep if the platform experiences a lot of load.
 
-There's no definite answer to how long it will take until such a deployment goes to sleep, because the time will automatically be calculated based on the platform's load and the amount of deployments on it. But if your deployment is linked to an alias, it's less likely to ever fall into a sleep when not being accessed.
+There's no definite answer to how long it will take until such a deployment goes to sleep because the time will automatically be calculated based on the platform's load and the amount of deployments on it. But if your deployment is linked to an alias, it's less likely to ever fall into a sleep when not being accessed.
 
 All in all, sleeping deployments are here to reduce the effort the system has to push into keeping those running that aren't being accessed at all (which usually means they're inactive and not needed anymore).
 
