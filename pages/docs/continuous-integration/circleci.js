@@ -4,18 +4,18 @@ import { Code, InlineCode } from '../../../components/text/code'
 
 // prettier-ignore
 export default withDoc({
-  title: 'Automate Node Deployment with Circle CI',
-  description: 'Using Circle CI to automate your Now Node deployments',
+  title: 'Automate Node Deployment with CircleCI',
+  description: 'Using CircleCI to automate your Now Node deployments',
   date: '26 May 2018',
   authors: [],
   editUrl: 'pages/docs/continuous-integration/circleci.js',
 })(markdown(components)`
 
-Every time you push or merge to the master branch a new build and deployment is initiated in Circle CI.
+Every time you push or merge to the master branch a new build and deployment is initiated in CircleCI.
 
 ## Step 1: Create an account
 
-[Circle CI](https://circleci.com/)
+[CircleCI](https://circleci.com/)
 
 ## Step 2: Add the config file
 
@@ -131,7 +131,7 @@ In your CircleCI account, go to "Add projects", then find your repository and cl
 
 ## Step 7: Get now token
 
-You need to get a [token](https://zeit.co/account/tokens). Go to the tokens page of your dashboard, under Account Settings, Tokens. Enter the name of the Token (e.g. Circle CI) and hit enter. A new token will be created which you can copy to your clipboard by clicking Copy.
+You need to get a [token](https://zeit.co/account/tokens). Go to the tokens page of your dashboard, under Account Settings, Tokens. Enter the name of the Token (e.g. CircleCI) and hit enter. A new token will be created which you can copy to your clipboard by clicking Copy.
 
 ## Step 8: Add environment variables
 
