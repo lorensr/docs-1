@@ -67,7 +67,28 @@ ${
    
 ### Service worker
    
-If you are using CRA's service worker, disabling HTTP caching on ${<InlineCode>service-worker.js</InlineCode>} [is recommended](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#offline-first-considerations). ${<InlineCode>serve</InlineCode>} [doesn't yet support](https://github.com/zeit/serve/issues/289) per-file caching, so you have to turn off caching for all files: ${<InlineCode>serve --single ./build --cache 0</InlineCode>}
+If you are using CRA's service worker, disabling HTTP caching on ${<InlineCode>service-worker.js</InlineCode>} [is recommended](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#offline-first-considerations). So if you are [setting a Cache-Control header](https://github.com/zeit/serve-handler#headers-array), include this in your ${<InlineCode>serve.json</InlineCode>}:
+
+${
+  <Code>{`{
+  "headers": {
+    {
+      "source": "**/*",
+      "headers" : [{
+        "key" : "Cache-Control",
+        "value" : "max-age=86400"
+      }]
+    },
+    {
+      "source": "service-worker.js",
+      "headers" : [{
+        "key" : "Cache-Control",
+        "value" : null
+      }]
+    }
+  }
+}`}</Code>
+}
 
 ## Deploying the application
 Once we did that we can deploy our application with the following command:
