@@ -56,17 +56,16 @@ Now, all the `www` traffic will be forwarded to your naked domain (in this case 
 In this case, your app accepts `www` traffic and it will redirect them from your app. If you are using [Express](https://expressjs.com/) for your app, you can do something like this:
 
 ```
-function redirect(req, res, next) {
-  // if the request doesn't come from mycompany.com or from the deployment URL
-  if (req.hostname !== 'mycompany.com' || req.hostname !== process.env.NOW_URL) {
-    // redirect to mycompany.com keeping the pathname and querystring
-    return res.redirect(`https://mycompany.com/\\${req.originalUrl}`);
+function redirectToApex(req, res, next) {
+  if (req.hostname === 'mycompany.com' || req.hostname === process.env.NOW_URL) {
+    return next();
+  } else {
+    return res.redirect(`https://mycompany.com${req.originalUrl}`);
   }
-  return next(); // call the next middleware (or route)
 }
 
-// make Express use our redirect middleware
-app.use(redirect);
+// tell Express to use our middleware
+app.use(redirectToApex);
 ```
 
 If you are using some other language or a different web server, you can implement a similar logic as shown above.
